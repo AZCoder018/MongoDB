@@ -3,18 +3,17 @@ var Article = require("../models/Article");
 
 module.exports = {
   fetch: function(callback) {
-
     scrape(function(data) {
 
+ //Check the date and whether or not to save
       var articlesArr = data;
-      //check if date and not to save it initially
       for (var i = 0; i < articlesArr.length; i++) {
         articlesArr[i].date = new Date();
         articlesArr[i].saved = false;
         articlesArr[i].note = [];
       }
 
-//no dupes
+//Prevent duplicates
         Article.collection.insertMany(articlesArr, { ordered: false }, function(err, docs) {
           callback(err, docs);
         });
@@ -26,12 +25,14 @@ module.exports = {
         _id: -1
       })
       .exec(function(err, doc) {
-        //send saved articles back to routes for rendering
+
+  //Send saved articles back to routes for rendering
         cb(doc);
       });
   },
   update: function(query, cb) {
-//save or unsave
+
+//Save or unsave articles
     Article.update({ _id: query.id }, {
       $set: {saved: query.saved}
     }, {}, cb);
