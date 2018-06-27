@@ -6,8 +6,6 @@ var exphbs = require("express-handlebars");
 var Note = require("./models/Note.js");
 var Article = require("./models/Article.js");
 
-//mongoose.Promise = Promise;
-
 // Initialize Express
 var app = express();
 
@@ -51,10 +49,10 @@ require("./config/routes")(router);
 // Have every request go through router middlewar
 app.use(router);
 
-//set port
-var port = process.env.PORT || 3001;
+//Set port
+var port = process.env.PORT || 3000;
 
-//setup listener
+//Setup listener
 app.listen(port, function() {
   console.log("app running on port " + port);
 });
