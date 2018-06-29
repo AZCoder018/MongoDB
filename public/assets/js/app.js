@@ -55,9 +55,8 @@ $(document).ready(function() {
           $('#notesBody').empty();
           $('#notestext').val('');
 
-
+ //Add notes to modal body,loop through if multiple notes      
           $('#noteModalLabel').append(' ' + thisId);
-          //add notes to body of modal, will loop through if multiple notes
           for(var i = 0; i<data.note.length; i++) {
               var button = ' <a href=/deleteNote/' + data.note[i]._id + '><i class="pull-right fa fa-times fa-2x deletex" aria-hidden="true"></i></a>';
               $('#notesBody').append('<div class="panel panel-default"><div class="noteText panel-body">' + data.note[i].body + '  ' + button + '</div></div>');
@@ -65,26 +64,23 @@ $(document).ready(function() {
       });
   });
 
+//Grab the id associated with the article from the submit button
   $(".savenote").click(function() {
-  // Grab the id associated with the article from the submit button
     var thisId = $(this).attr("data-value");
 
-
-  // Run a POST request to change the note, using what's entered in the inputs
+//Run a POST request to change the note
     $.ajax({
       method: "POST",
       url: "/notes/" + thisId,
       data: {
-        // Value taken from title input
-
-        // Value taken from note textarea
+    
+//Value taken from note textarea
         body: $("#notestext").val().trim()
       }
     })
-      // With that done
+
+ //Log the response   
     .done(function(data) {
-        // Log the response
-        //console.log(data);
         $('#noteModal').modal('hide');
 
     });
