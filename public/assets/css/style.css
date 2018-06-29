@@ -41,12 +41,12 @@ h1, h2, h3, h4 {
 	border: 2px 2px 2px 2px red;
 }
 
-.panel-body{
+.panel-body {
 	border: 4px black;
 }
 
-.panel-title{
-	font-family: 'Times New Roman', Times, serif;
+.panel-title {
+  font-family: 'Times New Roman', Times, serif;
   font-size: 23px;
 }
 
@@ -67,7 +67,6 @@ h1, h2, h3, h4 {
 	border-left: 1px;
 	padding-right: 60px;
 	margin-left: 1px;
-
 }
 
 .navbar-header {

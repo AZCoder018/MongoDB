@@ -23,7 +23,6 @@ var $ = cheerio.load(html);
       });
       callback(articlesArr);
   });
-
 };
 
 module.exports = scrape;
