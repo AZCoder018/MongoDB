@@ -5,7 +5,7 @@ module.exports = {
   fetch: function(callback) {
     scrape(function(data) {
 
- //Check the date and whether or not to save
+//Check the date and whether or not to save
       var articlesArr = data;
       for (var i = 0; i < articlesArr.length; i++) {
         articlesArr[i].date = new Date();
@@ -26,7 +26,7 @@ module.exports = {
       })
       .exec(function(err, doc) {
 
-  //Send saved articles back to routes for rendering
+//Send saved articles back to routes for rendering
         cb(doc);
       });
   },
