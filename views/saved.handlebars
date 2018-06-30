@@ -8,33 +8,36 @@
     		  <div class="panel-body">
     		    <a class="artLink" href={{link}}>{{link}}</a>
     		      <button data-id={{_id}} class="btn btn-danger pull-right removeSaved">Remove from Saved</button>
-              <button data-id={{_id}} class="btn btn-primary pull-right saved-buttons"  id="addCheckNote" data-toggle="modal" data-target="#noteModal" data-value="{{this._id}}">View/Add Notes</button>
-    		  </div>
+              <button data-id={{_id}} class="btn btn-primary pull-right saved-buttons"  id="modalButton" data-toggle="modal" data-target="#noteModal" data-value="{{this._id}}">View/Add Notes</button>
+
+          </div>
     		</div>
     	<br />
     	<br />
 
-<!--Create a modal-->
+<!--Modal -->
     <div id="noteModal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id=""><b>Notes:</b></h4>
-                      <div>
-                        <ul id="notesBody">
-                        </ul>
-                      </div>
+                 <div class="modal-header">
+                <h5 class="modal-title">Notes for Article <span id="article-id"></span></h5>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <div class="notes">
+                    <ul class="list-group list-group-flush articles-available">
+                    </ul>
                 </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="exampleTextarea">Enter New Note</label>
-                    <textarea class="form-control" id="notestext" rows="3"></textarea>
-                </div>
-                <div></div>
+                <br/>
+                    <div class="form-group">
+                        <label for="exampleTextarea">Enter New Note</label>
+                        <textarea class="form-control" id="notestext" rows="3"></textarea>
+                    </div>
             </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button data-id={{_id}}  data-dismiss="modal" id="saveButton" class="btn btn-primary savenote">Save changes</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button data-id={{_id}}  data-dismiss="modal" id="saveButton" class="btn btn-primary savenote">Save changes</button>
                   </div>
               </div>
           </div>
@@ -44,3 +47,17 @@
 
     </ul>
     </div>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script>
+$(document).on("click", "#modalButton", function() {
+
+$.ajax({
+    method: "GET",
+    url: "/articles/" + thisId
+  })
+
+
+</script>

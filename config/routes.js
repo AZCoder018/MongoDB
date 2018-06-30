@@ -66,9 +66,9 @@ router.get("/api/fetch", function(req, res) {
       var newNote = new Note(req.body);
       newNote.save(function (err, doc) {
           if (err) console.log(err);
-
-//Find the _id by req.params.id; push to notes array        
           Article.findOneAndUpdate(
+              
+//Find the _id by req.params.id; push to notes array
             {_id: req.params.id}, 
             {push: {note: doc._id}}, 
             {new: true},

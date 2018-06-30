@@ -6,6 +6,8 @@ var exphbs = require("express-handlebars");
 var Note = require("./models/Note.js");
 var Article = require("./models/Article.js");
 
+mongoose.Promise = Promise;
+
 //Initialize Express
 var app = express();
 
@@ -14,7 +16,7 @@ app.use(bodyParser.urlencoded({
    extended: false
 }));
 
-//Make public a static directory
+//Make public a static dir
 app.use(express.static(process.cwd() + "/public"));
 
 //Database configuration with mongoose
@@ -40,13 +42,13 @@ db.once("open", function() {
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-//Import routes and give the server access to them
+//Import routes and give the server access to them.
 var router = express.Router();
 
 //Require routes file pass router object
 require("./config/routes")(router);
 
-//Have every request go through router 
+//Have every request go through router middlewar
 app.use(router);
 
 //Set port
